@@ -10,15 +10,15 @@ properties:
           cpu: 0.5
           memoryInGb: 0.5
       ports:
-        - containerPort: 4444
+        - port: 4444
           protocol: TCP
   - name: selenium-node
     properties:
       image: selenium/node-chrome
       ports:
-        - containerPort: 4444
+        - port: 4444
           protocol: TCP
-        - containerPort: 5555
+        - port: 5555
           protocol: TCP
       volumeMounts:
         - mountPath: /dev/shm
@@ -44,7 +44,7 @@ properties:
     properties:
       image: selenium/node-firefox
       ports:
-        - containerPort: 5556
+        - port: 5556
       volumeMounts:
         - mountPath: /dev/shm
           name: dshm      
