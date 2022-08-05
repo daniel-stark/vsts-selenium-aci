@@ -11,11 +11,16 @@ properties:
           memoryInGb: 0.5
       ports:
       - port: 4444
+      - containerPort: 4444
+        protocol: TCP
   - name: selenium-node
     properties:
       image: selenium/node-chrome
       ports:
+        - containerPort: 4444
+          protocol: TCP
         - containerPort: 5555
+          protocol: TCP
       volumeMounts:
         - mountPath: /dev/shm
           name: dshm
@@ -26,8 +31,12 @@ properties:
           "value": "4444"
         - "name": "NODE_PORT"
           "value": "5555"
-#       - "name": "SE_EVENT_BUS_HOST"
-#         "value": "selenium-hub"
+        - "name": "SE_EVENT_BUS_HOST"
+          "value": "selenium-hub"
+        - name: HUB_PORT_4444_TCP_ADDR
+          value: "selenium-hub"
+        - name: HUB_PORT_4444_TCP_PORT
+          value: "4444"          
       resources:
         requests:
           cpu: 0.5
@@ -36,7 +45,7 @@ properties:
     properties:
       image: selenium/node-firefox
       ports:
-        - containerPort: 5558
+        - containerPort: 5556
       volumeMounts:
         - mountPath: /dev/shm
           name: dshm      
