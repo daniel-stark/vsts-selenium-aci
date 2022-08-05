@@ -10,9 +10,8 @@ properties:
           cpu: 0.5
           memoryInGb: 0.5
       ports:
-      - port: 4444
-      - containerPort: 4444
-        protocol: TCP
+        - containerPort: 4444
+          protocol: TCP
   - name: selenium-node
     properties:
       image: selenium/node-chrome
