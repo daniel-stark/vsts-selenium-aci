@@ -16,11 +16,13 @@ properties:
       image: selenium/node-chrome
       environmentVariables:
         - "name": "HUB_HOST"
-          "value": "localhost"
+          "value": "selenium-hub"
         - "name": "HUB_PORT"
           "value": "4444"
         - "name": "NODE_PORT"
           "value": "5555"
+#       - "name": "SE_EVENT_BUS_HOST"
+#         "value": "selenium-hub"
       resources:
         requests:
           cpu: 0.5
@@ -30,7 +32,7 @@ properties:
       image: selenium/node-firefox
       environmentVariables:
         - "name": "HUB_HOST"
-          "value": "localhost"
+          "value": "selenium-hub"
         - "name": "HUB_PORT"
           "value": "4444"
         - "name": "NODE_PORT"
