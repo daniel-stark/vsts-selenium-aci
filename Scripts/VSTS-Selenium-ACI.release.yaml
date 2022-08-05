@@ -20,9 +20,6 @@ properties:
           protocol: TCP
         - port: 5555
           protocol: TCP
-      volumeMounts:
-        - mountPath: /dev/shm
-          name: dshm
       environmentVariables:
         - "name": "HUB_HOST"
           "value": "selenium-hub"
@@ -44,10 +41,7 @@ properties:
     properties:
       image: selenium/node-firefox
       ports:
-        - port: 5556
-      volumeMounts:
-        - mountPath: /dev/shm
-          name: dshm      
+        - port: 5556    
       environmentVariables:
         - "name": "HUB_HOST"
           "value": "selenium-hub"
