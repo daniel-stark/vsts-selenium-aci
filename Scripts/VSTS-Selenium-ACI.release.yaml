@@ -41,7 +41,7 @@ properties:
           memoryInGb: 0.5
   - name: vsts-agent1
     properties:
-      image: microsoft/vsts-agent:ubuntu-latest
+      image: mcr.microsoft.com/azure-pipelines/vsts-agent:latest
       environmentVariables:
         - "name": "VSTS_AGENT"
           "value": "aci-a1"
@@ -57,7 +57,7 @@ properties:
           memoryInGb: 0.5
   - name: vsts-agent2
     properties:
-      image: microsoft/vsts-agent:ubuntu-latest
+      image: mcr.microsoft.com/azure-pipelines/vsts-agent:latest
       environmentVariables:
         - "name": "VSTS_AGENT"
           "value": "aci-a2"
