@@ -16,8 +16,6 @@ properties:
     properties:
       image: selenium/node-chrome
       ports:
-        - port: 4444
-          protocol: TCP
         - port: 5555
           protocol: TCP
       environmentVariables:
