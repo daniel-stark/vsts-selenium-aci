@@ -1,5 +1,5 @@
 apiVersion: 2018-06-01
-location: eastus
+location: centralus
 properties:
   containers:
   - name: selenium-hub
