@@ -34,7 +34,9 @@ properties:
         - name: SE_EVENT_BUS_PUBLISH_PORT
           value: 4442
         - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
-          value: 4443      
+          value: 4443    
+      ports:
+        - port: 5555
       resources:
         requests:
           cpu: 0.5
@@ -53,7 +55,9 @@ properties:
         - name: SE_EVENT_BUS_PUBLISH_PORT
           value: 4442
         - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
-          value: 4443 
+          value: 4443
+      ports:
+        - port: 5556          
       resources:
         requests:
           cpu: 0.5
