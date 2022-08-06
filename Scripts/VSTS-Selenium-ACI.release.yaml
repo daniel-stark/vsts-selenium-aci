@@ -10,47 +10,59 @@ properties:
           cpu: 0.5
           memoryInGb: 0.5
       ports:
+        - port: 4442
+        - port: 4443
         - port: 4444
-          protocol: TCP
+      livenessProbe:
+        httpGet:
+          path: /wd/hub/status
+          port: 4444
+        initialDelaySeconds: 30
+        timeoutSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /wd/hub/status
+          port: 4444
+        initialDelaySeconds: 30
+        timeoutSeconds: 5        
   - name: selenium-node
     properties:
       image: selenium/node-chrome
-      ports:
-        - port: 5555
-          protocol: TCP
       environmentVariables:
-        - "name": "HUB_HOST"
-          "value": "selenium-hub"
-        - "name": "HUB_PORT"
-          "value": "4444"
-        - "name": "NODE_PORT"
-          "value": "5555"
-        - "name": "SE_EVENT_BUS_HOST"
-          "value": "selenium-hub"
-        - name: HUB_PORT_4444_TCP_ADDR
-          value: "selenium-hub"
-        - name: HUB_PORT_4444_TCP_PORT
-          value: "4444"          
+        - name: SE_EVENT_BUS_HOST
+          value: localhost
+        - name: SE_EVENT_BUS_PUBLISH_PORT
+          value: 4442
+        - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
+          value: 4443      
       resources:
         requests:
           cpu: 0.5
           memoryInGb: 0.5
+      volumeMounts:
+      - name: devshm
+        mountPath: /dev/shm
+      - name: downloads
+        mountPath: /home/seluser/downloads          
   - name: selenium-firefox
     properties:
-      image: selenium/node-firefox
-      ports:
-        - port: 5556    
+      image: selenium/node-firefox 
       environmentVariables:
-        - "name": "HUB_HOST"
-          "value": "selenium-hub"
-        - "name": "HUB_PORT"
-          "value": "4444"
-        - "name": "NODE_PORT"
-          "value": "5556"
+        - name: SE_EVENT_BUS_HOST
+          value: localhost
+        - name: SE_EVENT_BUS_PUBLISH_PORT
+          value: 4442
+        - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
+          value: 4443 
       resources:
         requests:
           cpu: 0.5
           memoryInGb: 0.5
+      volumeMounts:
+      - name: devshm
+        mountPath: /dev/shm
+      - name: downloads
+        mountPath: /home/seluser/downloads          
   - name: vsts-agent1
     properties:
       image: mcr.microsoft.com/azure-pipelines/vsts-agent:latest
@@ -67,6 +79,9 @@ properties:
         requests:
           cpu: 0.5
           memoryInGb: 0.5
+      volumeMounts:
+        - name: downloads
+          mountPath: /tmp/          
   - name: vsts-agent2
     properties:
       image: mcr.microsoft.com/azure-pipelines/vsts-agent:latest
@@ -83,6 +98,20 @@ properties:
         requests:
           cpu: 0.5
           memoryInGb: 0.5
+      volumeMounts:
+        - name: downloads
+          mountPath: /tmp/          
+  volumes:
+  - name: devshm
+    emptyDir: {}
+  - name: downloads
+    emptyDir: {}
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 4444
+#    dnsNameLabel: selenium-hub
   osType: Linux
   restartPolicy: Always
 tags: null
