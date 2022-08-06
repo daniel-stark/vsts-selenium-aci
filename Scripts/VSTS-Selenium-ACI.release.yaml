@@ -34,7 +34,15 @@ properties:
         - name: SE_EVENT_BUS_PUBLISH_PORT
           value: 4442
         - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
-          value: 4443    
+          value: 4443
+        - name: SE_NODE_PORT
+          value: 5555    
+        - name: SE_SCREEN_WIDTH
+          value: 1366
+        - name: SE_SCREEN_HEIGHT
+          value: 768         
+# SE_NODE_SESSION_TIMEOUT (in deconds)     
+# https://webelement.click/en/selenium_grid_4_complete_guide_to_configuration_flags          
       ports:
         - port: 5555
       resources:
@@ -56,6 +64,14 @@ properties:
           value: 4442
         - name: SE_EVENT_BUS_SUBSCRIBE_PORT     
           value: 4443
+        - name: SE_NODE_PORT
+          value: 5556
+        - name: SE_SCREEN_WIDTH
+          value: 1366
+        - name: SE_SCREEN_HEIGHT
+          value: 768         
+# SE_NODE_SESSION_TIMEOUT (in deconds)     
+# https://webelement.click/en/selenium_grid_4_complete_guide_to_configuration_flags
       ports:
         - port: 5556          
       resources:
