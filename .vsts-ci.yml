@@ -2,7 +2,7 @@ name: 1.0.0$(rev:.r)
 resources:
 - repo: self
 queue:
-  name: windows-latest
+  name: Default
   demands: 
   - msbuild
   - visualstudio
