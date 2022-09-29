@@ -1,12 +1,14 @@
 name: 1.0.0$(rev:.r)
 resources:
 - repo: self
-queue:
+pool:
   name: Azure Pipelines
+  vmImage: windows-latest
   demands: 
   - msbuild
   - visualstudio
   - vstest
+  - windows
 
 
 variables:
