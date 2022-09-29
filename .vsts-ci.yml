@@ -8,7 +8,6 @@ pool:
   - msbuild
   - visualstudio
   - vstest
-  - windows
 
 
 variables:
